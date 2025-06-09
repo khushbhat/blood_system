@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+{% block title %}Create Blood Request{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <h2 class="mb-4">Create New Blood Request</h2>
+    <form method="post" action="{{ url_for('create_request') }}">
+      <div class="mb-3">
+        <label for="blood_group" class="form-label">Blood Group</label>
+        <select
+          id="blood_group"
+          name="blood_group"
+          class="form-select"
+          required
+        >
+          <option value="">Select group...</option>
+          <option>O+</option>
+          <option>O-</option>
+          <option>A+</option>
+          <option>A-</option>
+          <option>B+</option>
+          <option>B-</option>
+          <option>AB+</option>
+          <option>AB-</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="units_required" class="form-label">Units Required</label>
+        <input
+          type="number"
+          class="form-control"
+          id="units_required"
+          name="units_required"
+          min="1"
+          placeholder="e.g. 2"
+          required
+        >
+      </div>
+      <button type="submit" class="btn btn-success">Submit Request</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

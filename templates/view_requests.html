@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% block title %}Your Blood Requests{% endblock %}
+{% block content %}
+<h2 class="mb-4">Your Blood Requests</h2>
+
+{% if requests %}
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Blood Group</th>
+        <th>Units</th>
+        <th>Status</th>
+        <th>Requested On</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for req in requests %}
+        <tr>
+          <td>{{ req.request_id }}</td>
+          <td>{{ req.blood_group }}</td>
+          <td>{{ req.units_required }}</td>
+          <td>{{ req.status }}</td>
+          <td>{{ req.request_date }}</td>
+          <td>
+            <form method="post" action="{{ url_for('view_requests') }}">
+              <input type="hidden" name="request_id" value="{{ req.request_id }}">
+              <select name="status" class="form-select form-select-sm mb-1">
+                <option {% if req.status=='Pending' %}selected{% endif %}>Pending</option>
+                <option {% if req.status=='Fulfilled' %}selected{% endif %}>Fulfilled</option>
+                <option {% if req.status=='Rejected' %}selected{% endif %}>Rejected</option>
+              </select>
+              <button type="submit" class="btn btn-sm btn-primary">Update</button>
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  <p>You have no requests yet. <a href="{{ url_for('create_request') }}">Create one now</a>.</p>
+{% endif %}
+{% endblock %}

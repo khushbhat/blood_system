@@ -1,0 +1,94 @@
+/* static/css/style.css */
+
+/* Body & Container */
+body {
+  background-color: #f8beba;
+  background: url("../images/bg.jpg") no-repeat center center fixed;
+  background-size: cover;
+}
+/* Load Ethan Hall */
+/* @font-face {
+  font-family: 'Ethan Hall';
+  src: url('../fonts/EthanHall.woff2') format('woff2'),
+       url('../fonts/EthanHall.woff')  format('woff');
+  font-weight: normal;
+  font-style: normal;
+} */
+.container {
+  max-width: 800px;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* Card/Form Panels */
+.form-container, .card {
+  background: #f8beba;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Navbar */
+.navbar {
+  box-shadow: 0 2px 4px rgba(219, 126, 126, 0.1);
+}
+.custom-navbar{
+  background-color: #f8beba;
+}
+.navbar-brand {
+   font-family: 'Montserrat';
+  color: #940F05;
+  font-weight: bold;
+  font-size: 1.75rem;
+
+}
+.tagline {
+  font-style: italic;
+  color: #940F05;
+  margin: 0 1rem;
+margin-bottom: 0;
+line-height: 1.2;
+}
+
+/* Headings */
+h2 {
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+/* Tables */
+.table {
+  background: #e99393;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(0,0,0,.03);
+}
+
+/* Buttons */
+.btn {
+  border-radius: 0.3rem;
+  font-weight: 500;
+  padding: 0.45rem 0.9rem;
+}
+.btn-primary {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.btn-success {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Forms */
+.form-label {
+  font-weight: 500;
+}
+.form-control, .form-select {
+  border-radius: 0.3rem;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
+}
+
+/* Utility */
+.text-warning {
+  color: #856404 !important;
+}

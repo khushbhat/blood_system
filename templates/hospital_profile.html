@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% block title %}Hospital Profile{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <h2 class="mb-4">{% if hospital %}Update{% else %}Complete{% endif %} Your Hospital Profile</h2>
+    <form method="post" action="{{ url_for('hospital_profile') }}">
+      <div class="mb-3">
+        <label for="hospital_name" class="form-label">Hospital Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="hospital_name"
+          name="hospital_name"
+          placeholder="Hospital Name"
+          value="{{ hospital.hospital_name if hospital else '' }}"
+          required
+        >
+      </div>
+      <div class="mb-3">
+        <label for="city" class="form-label">City</label>
+        <input
+          type="text"
+          class="form-control"
+          id="city"
+          name="city"
+          placeholder="City"
+          value="{{ hospital.city if hospital else '' }}"
+          required
+        >
+      </div>
+      <div class="mb-3">
+        <label for="contact_number" class="form-label">Contact Number</label>
+        <input
+          type="tel"
+          class="form-control"
+          id="contact_number"
+          name="contact_number"
+          placeholder="e.g. +91-XXXXXXXXXX"
+          value="{{ hospital.contact_number if hospital else '' }}"
+          required
+        >
+      </div>
+      <button type="submit" class="btn btn-primary">{% if hospital %}Update{% else %}Save{% endif %} Profile</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

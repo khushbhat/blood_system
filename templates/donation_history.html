@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block title %}Your Donations{% endblock %}
+{% block content %}
+<h2 class="mb-4">Donation History</h2>
+{% if records %}
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Date</th><th>Units</th><th>Hospital</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for r in records %}
+        <tr>
+          <td>{{ r.donation_date }}</td>
+          <td>{{ r.units_donated }}</td>
+          <td>{{ r.hospital_name }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  <p>No donations logged yet. <a href="{{ url_for('log_donation') }}">Log one now</a>.</p>
+{% endif %}
+{% endblock %}

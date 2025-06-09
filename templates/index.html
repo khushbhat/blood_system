@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<h2>Welcome to the Blood Donation System</h2>
+<p>Your role: <strong>{{ role }}</strong></p>
+
+<ul class="list-group">
+  {% if role == 'Donor' %}
+    <li class="list-group-item">
+      <a href="{{ url_for('donor_profile') }}">Complete / Update Your Donor Profile</a>
+    </li>
+    <li class="list-group-item">
+      <a href="{{ url_for('log_donation') }}">Log a Donation</a>
+    </li>
+    <li class="list-group-item">
+      <a href="{{ url_for('search_requests') }}">Search for Blood Requests in Your Area</a>
+    </li>
+    <li class="list-group-item">
+      <a href="{{ url_for('donation_history') }}">View Your Donation History</a>
+    </li>
+
+  {% elif role == 'Hospital' %}
+  <li class="list-group-item">
+    <a href="{{ url_for('hospital_profile') }}">
+      Complete / Update Your Hospital Profile
+    </a>
+  </li>
+  <li class="list-group-item">
+    <a href="{{ url_for('create_request') }}">Create a New Blood Request</a>
+  </li>
+  <li class="list-group-item">
+    <a href="{{ url_for('view_requests') }}">View / Update Your Requests</a>
+  </li>
+
+  {% elif role == 'Admin' %}
+    <li class="list-group-item">
+      <a href="{{ url_for('admin_requests') }}">Approve / Reject Blood Requests</a>
+    </li>
+    <li class="list-group-item">
+      <a href="{{ url_for('reports') }}">Generate Stock & Donation Reports</a>
+    </li>
+  {% endif %}
+</ul>
+{% endblock %}

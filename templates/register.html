@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block title %}Register{% endblock %}
+{% block content %}
+<h2>Register</h2>
+<form method="post">
+  <div><input name="name" placeholder="Name" required></div>
+  <div><input name="email" type="email" placeholder="Email" required></div>
+  <div><input name="password" type="password" placeholder="Password" required></div>
+  <div>
+    <select name="role">
+      <option>Donor</option>
+      <option>Hospital</option>
+    </select>
+  </div>
+  <button type="submit">Sign Up</button>
+</form>
+{% endblock %}
