@@ -8,11 +8,11 @@ agent any
 
 stages {
 
-    stage('Clean Workspace') {
-        steps {
-            cleanWs()
-        }
-    }
+    // stage('Clean Workspace') {
+    //     steps {
+    //         cleanWs()
+    //     }
+    // }
 
     // stage('Checkout') {
     //     steps {
@@ -60,13 +60,15 @@ stages {
 
     stage('SonarQube Analysis') {
         steps {
-            withSonarQubeEnv('sonarqube') {
-                sh '''
-                sonar-scanner
-                '''
+        script {
+            def scannerHome = tool 'sonarqube'
+                    withSonarQubeEnv('sonarqube') {
+                        sh "${scannerHome}/bin/sonar-scanner"
+                    }
             }
         }
     }
+
 
     stage('Stop Existing Containers') {
         steps {
