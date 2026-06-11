@@ -2,9 +2,9 @@ pipeline {
 
 agent any
 
-tools {
-    dependencyCheck 'OWASP'
-}
+// tools {
+//     dependencyCheck 'OWASP'
+// }
 
 stages {
 
@@ -31,14 +31,14 @@ stages {
         }
     }
 
-    // stage('OWASP Dependency Check') {
-    //     steps {
-    //         dependencyCheck(
-    //             odcInstallation: 'OWASP',
-    //             additionalArguments: '--scan . --format ALL'
-    //         )
-    //     }
-    // }
+    stage('OWASP Dependency Check') {
+        steps {
+            dependencyCheck(
+                odcInstallation: 'OWASP',
+                additionalArguments: '--scan . --format ALL'
+            )
+        }
+    }
 
     stage('Publish OWASP Report') {
         steps {
