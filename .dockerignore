@@ -1,0 +1,3 @@
+venv/pycache/ .git .gitignore
+README.md *.pyc .DS_Store
+venv/ .env

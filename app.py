@@ -1,17 +1,18 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 import mysql.connector
+import os
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import date
 
 app = Flask(__name__, template_folder='templates')
-app.secret_key = 'replace-with-a-random-secret-key'
+app.secret_key = os.environ.get("SECRET_KEY")
 print("starting flask")
 # --- MySQL Connection ---
 db_config = {
-    'host':     'localhost',
-    'user':     'flaskuser',           # your DB user
-    'password': 'FlaskPass123!',       # your DB password
-    'database': 'blood_system'         # or 'bloodbank'
+    'host':     os.environ.get('DB_HOST', 'localhost'),
+    'user':     os.environ.get('DB_USER', 'flaskuser'),           # your DB user
+    'password': os.environ.get('DB_PASSWORD', 'Mehnaz13@MYSQL.'),   # your DB password
+    'database': os.environ.get('DB_NAME', 'blood_system')         # or 'bloodbank'
 }
 db = mysql.connector.connect(**db_config)
 cursor = db.cursor(dictionary=True)
