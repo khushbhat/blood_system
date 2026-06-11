@@ -31,22 +31,32 @@ stages {
         }
     }
 
-    stage('OWASP Dependency Check') {
+    stage('Trivy Filesystem Scan') {
         steps {
-            dependencyCheck(
-                odcInstallation: 'OWASP',
-                additionalArguments: '--scan . --format ALL'
-            )
+            sh '''
+            docker run --rm \
+            -v "$PWD:/project" \
+            aquasec/trivy fs /project
+            '''
         }
     }
 
-    stage('Publish OWASP Report') {
-        steps {
-            dependencyCheckPublisher(
-                pattern: '**/dependency-check-report.xml'
-            )
-        }
-    }
+    // stage('OWASP Dependency Check') {
+    //     steps {
+    //         dependencyCheck(
+    //             odcInstallation: 'OWASP',
+    //             additionalArguments: '--scan . --format ALL'
+    //         )
+    //     }
+    // }
+
+    // stage('Publish OWASP Report') {
+    //     steps {
+    //         dependencyCheckPublisher(
+    //             pattern: '**/dependency-check-report.xml'
+    //         )
+    //     }
+    // }
 
     stage('SonarQube Analysis') {
         steps {
@@ -70,6 +80,16 @@ stages {
         steps {
             sh '''
             docker compose build
+            '''
+        }
+    }
+
+    stage('Trivy Image Scan') {
+        steps {
+            sh '''
+            docker run --rm \
+            -v /var/run/docker.sock:/var/run/docker.sock \
+            aquasec/trivy image blood_system-web:latest
             '''
         }
     }
