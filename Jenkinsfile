@@ -118,6 +118,5 @@ post {
         echo 'Deployment failed'
     }
 }
-```
 
 }
