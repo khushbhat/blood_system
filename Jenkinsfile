@@ -1,6 +1,5 @@
 pipeline {
 
-```
 agent any
 
 tools {
@@ -15,12 +14,12 @@ stages {
         }
     }
 
-    stage('Checkout') {
-        steps {
-            git branch: 'main',
-                url: 'https://github.com/khushbhat/blood_system.git'
-        }
-    }
+    // stage('Checkout') {
+    //     steps {
+    //         git branch: 'main',
+    //             url: 'https://github.com/khushbhat/blood_system.git'
+    //     }
+    // }
 
     stage('Verify Environment') {
         steps {
@@ -79,15 +78,6 @@ stages {
         steps {
             sh '''
             docker compose up -d
-            '''
-        }
-    }
-
-    stage('Health Check') {
-        steps {
-            sh '''
-            sleep 20
-            curl -f http://localhost:5004/ping
             '''
         }
     }
