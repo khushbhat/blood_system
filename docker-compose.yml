@@ -1,9 +1,6 @@
 services:
   db:
     image: mysql:8.0
-    depends_on:
-      db:
-        condition: service_healthy
     
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
@@ -17,7 +14,6 @@ services:
       MYSQL_DATABASE: blood_system
       MYSQL_USER: flaskuser
       MYSQL_PASSWORD: FlaskPass123!
-      SECRET_KEY: BloodSystemSecret2026
     volumes:
       - mysql_data:/var/lib/mysql
       - ./db_init.sql:/docker-entrypoint-initdb.d/db_init.sql:ro
@@ -29,12 +25,16 @@ services:
     container_name: blood_system_app
     restart: unless-stopped
     depends_on:
-      - db
+      db:
+        condition: service_healthy
+    
     environment:
       DB_HOST: db
       DB_USER: flaskuser
       DB_PASSWORD: FlaskPass123!
       DB_NAME: blood_system
+      SECRET_KEY: BloodSystemSecret2026
+
     ports:
       - "5004:5000"
     volumes:
