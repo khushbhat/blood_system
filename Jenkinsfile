@@ -2,17 +2,7 @@ pipeline {
 
 agent any
 
-// tools {
-//     dependencyCheck 'OWASP'
-// }
-
 stages {
-
-    // stage('Clean Workspace') {
-    //     steps {
-    //         cleanWs()
-    //     }
-    // }
 
     // stage('Checkout') {
     //     steps {
@@ -20,7 +10,11 @@ stages {
     //             url: 'https://github.com/khushbhat/blood_system.git'
     //     }
     // }
-
+    stage("adding a startup hello"){
+        steps {
+            echo "Hello, Jenkins! Starting the Blood System deployment pipeline."
+        }
+    }
     stage('Start Docker Desktop') {
         steps {
             sh '''
@@ -58,23 +52,6 @@ stages {
             '''
         }
     }
-
-    // stage('OWASP Dependency Check') {
-    //     steps {
-    //         dependencyCheck(
-    //             odcInstallation: 'OWASP',
-    //             additionalArguments: '--scan . --format ALL'
-    //         )
-    //     }
-    // }
-
-    // stage('Publish OWASP Report') {
-    //     steps {
-    //         dependencyCheckPublisher(
-    //             pattern: '**/dependency-check-report.xml'
-    //         )
-    //     }
-    // }
 
     stage('SonarQube Analysis') {
         steps {
