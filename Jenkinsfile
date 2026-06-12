@@ -21,6 +21,24 @@ stages {
     //     }
     // }
 
+    stage('Start Docker Desktop') {
+        steps {
+            sh '''
+            if ! docker info > /dev/null 2>&1; then
+                echo "Docker Desktop is not running. Starting Docker Desktop..."
+                open -a Docker
+
+                echo "Waiting for Docker Desktop to start..."
+                while ! docker info > /dev/null 2>&1; do
+                    sleep 5
+                done
+            else
+                echo "Docker Desktop is already running."
+            fi
+            '''
+        }
+    }
+
     stage('Verify Environment') {
         steps {
             sh '''
