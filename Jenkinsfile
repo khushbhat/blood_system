@@ -104,6 +104,15 @@ stages {
         }
     }
 
+    stage('Debug Workspace') {
+        steps {
+            sh '''
+            pwd
+            ls -la
+            '''
+        }
+    }
+
     stage('Trivy Image Scan') {
         steps {
             sh '''
